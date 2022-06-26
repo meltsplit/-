@@ -7,8 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class gameViewController: UIViewController {
+    
+    @IBOutlet weak var player: UIView!
+    @IBOutlet weak var car1: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
