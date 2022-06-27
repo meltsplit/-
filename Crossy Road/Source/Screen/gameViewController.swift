@@ -6,15 +6,34 @@
 //
 
 import UIKit
+import SnapKit
 
 class gameViewController: UIViewController {
     
+    @IBOutlet weak var line17: UIView!
     @IBOutlet weak var player: UIView!
     @IBOutlet weak var car1: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+      moveRight()
+        
+        
+        
+    
+    }
+    
+    func moveRight(){
+        
+        while(true){
+            var x = 0
+            x = x + 1
+            
+            
+            
+        }
     }
 
 
