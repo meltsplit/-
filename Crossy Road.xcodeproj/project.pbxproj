@@ -15,6 +15,9 @@
 		8728E544286889E400581AC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8728E543286889E400581AC3 /* Assets.xcassets */; };
 		8728E547286889E400581AC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8728E545286889E400581AC3 /* LaunchScreen.storyboard */; };
 		8728E5532868D73100581AC3 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E5522868D73100581AC3 /* TestVC.swift */; };
+		8728E5582869ED1500581AC3 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E5572869ED1500581AC3 /* Vehicle.swift */; };
+		8728E55A2869F54400581AC3 /* Test2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E5592869F54400581AC3 /* Test2VC.swift */; };
+		8728E55C286A0B2500581AC3 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E55B286A0B2500581AC3 /* Enum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,9 @@
 		8728E546286889E400581AC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8728E548286889E400581AC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8728E5522868D73100581AC3 /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
+		8728E5572869ED1500581AC3 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		8728E5592869F54400581AC3 /* Test2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2VC.swift; sourceTree = "<group>"; };
+		8728E55B286A0B2500581AC3 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		FB15D308B47B7ECA038A6721 /* Pods_Crossy_Road.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crossy_Road.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -95,6 +101,7 @@
 				8728E543286889E400581AC3 /* Assets.xcassets */,
 				8728E548286889E400581AC3 /* Info.plist */,
 				8728E545286889E400581AC3 /* LaunchScreen.storyboard */,
+				8728E55B286A0B2500581AC3 /* Enum.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -111,11 +118,37 @@
 		8728E5512868A1B100581AC3 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				8728E5542869ECD000581AC3 /* Model */,
+				8728E5562869ECDA00581AC3 /* View */,
+				8728E5552869ECD500581AC3 /* Controller */,
 				8728E540286889E200581AC3 /* Main.storyboard */,
-				8728E53E286889E200581AC3 /* gameViewController.swift */,
-				8728E5522868D73100581AC3 /* TestVC.swift */,
 			);
 			path = Screen;
+			sourceTree = "<group>";
+		};
+		8728E5542869ECD000581AC3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8728E5572869ED1500581AC3 /* Vehicle.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8728E5552869ECD500581AC3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8728E53E286889E200581AC3 /* gameViewController.swift */,
+				8728E5522868D73100581AC3 /* TestVC.swift */,
+				8728E5592869F54400581AC3 /* Test2VC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8728E5562869ECDA00581AC3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		9C16CB815D5EE011D29F5B8B /* Frameworks */ = {
@@ -241,8 +274,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8728E55C286A0B2500581AC3 /* Enum.swift in Sources */,
 				8728E5532868D73100581AC3 /* TestVC.swift in Sources */,
 				8728E53F286889E200581AC3 /* gameViewController.swift in Sources */,
+				8728E5582869ED1500581AC3 /* Vehicle.swift in Sources */,
+				8728E55A2869F54400581AC3 /* Test2VC.swift in Sources */,
 				8728E53B286889E200581AC3 /* AppDelegate.swift in Sources */,
 				8728E53D286889E200581AC3 /* SceneDelegate.swift in Sources */,
 			);
