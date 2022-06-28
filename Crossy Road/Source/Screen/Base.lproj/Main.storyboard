@@ -446,6 +446,26 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zfT-na-GMv">
+                                <rect key="frame" x="0.0" y="560" width="414" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y3W-o4-8Ry">
+                                <rect key="frame" x="0.0" y="400" width="414" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VNI-iL-4j6">
+                                <rect key="frame" x="0.0" y="360" width="414" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sDl-6i-kdC">
+                                <rect key="frame" x="0.0" y="200" width="414" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPJ-Vu-VWO">
                                 <rect key="frame" x="50" y="50" width="30" height="54"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
@@ -509,10 +529,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4fd-dT-jyb">
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4fd-dT-jyb">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DqD-ea-4Ml">
+                                <rect key="frame" x="48.5" y="412" width="317" height="72"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="60"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9F-Fp-1if">
                                 <rect key="frame" x="221.5" y="752" width="112.5" height="60"/>
                                 <constraints>
@@ -546,7 +572,9 @@
                         <constraints>
                             <constraint firstItem="YtG-WK-iOP" firstAttribute="trailing" secondItem="k9F-Fp-1if" secondAttribute="trailing" constant="80" id="1Ct-SE-6tx"/>
                             <constraint firstItem="YtG-WK-iOP" firstAttribute="bottom" secondItem="k9F-Fp-1if" secondAttribute="bottom" constant="50" id="G23-8s-ukg"/>
+                            <constraint firstItem="DqD-ea-4Ml" firstAttribute="centerY" secondItem="BAv-kd-Gry" secondAttribute="centerY" id="V81-Vu-kDz"/>
                             <constraint firstItem="4fd-dT-jyb" firstAttribute="top" secondItem="BAv-kd-Gry" secondAttribute="top" id="VEd-z0-YBK"/>
+                            <constraint firstItem="DqD-ea-4Ml" firstAttribute="centerX" secondItem="BAv-kd-Gry" secondAttribute="centerX" id="Zdc-Jm-4aY"/>
                             <constraint firstItem="8fC-R1-7vA" firstAttribute="centerY" secondItem="k9F-Fp-1if" secondAttribute="centerY" id="blr-DN-bSf"/>
                             <constraint firstItem="8fC-R1-7vA" firstAttribute="leading" secondItem="YtG-WK-iOP" secondAttribute="leading" constant="80" id="gBN-Ec-GpF"/>
                             <constraint firstItem="4fd-dT-jyb" firstAttribute="leading" secondItem="YtG-WK-iOP" secondAttribute="leading" id="gWC-xY-q3i"/>

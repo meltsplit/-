@@ -25,9 +25,8 @@ class Test2VC : UIViewController , GameOverDelegate{
     
     var wholeCar : [Vehicle]!
     
-    var road1 : Road!
-    var road2 : Road!
-    var map = Map()
+    var map = Map.map1
+    
     let gameOverVC : GameOverViewController = {
         let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GameOverViewController") as! GameOverViewController
         vc.modalPresentationStyle = .overCurrentContext
@@ -38,14 +37,10 @@ class Test2VC : UIViewController , GameOverDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        road1 = Road.road1
-        road2 = Road.road2
-        map.roads = [road1,road2]
         wholeCar = map.wholeCars()
         
         view.addSubview(player)
-        view.addSubviews(road1)
-        view.addSubviews(road2)
+        view.addSubviews(map)
         
         
         gameOverVC.delegate = self
@@ -58,8 +53,12 @@ class Test2VC : UIViewController , GameOverDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        moveCar(road1, Direction.Left,delay: Second.sec(4))
-        moveCar(road2, Direction.Right,delay: Second.sec(4))
+        moveCar(map.roads[0], Direction.Left,delay: Second.sec(4))
+        moveCar(map.roads[1], Direction.Right,delay: Second.sec(4))
+        moveCar(map.roads[2], Direction.Left,delay: Second.sec(6))
+        moveCar(map.roads[3], Direction.Right,delay: Second.sec(3))
+        moveCar(map.roads[4], Direction.Left,delay: Second.sec(5))
+        moveCar(map.roads[5], Direction.Right,delay: Second.sec(10))
         checkAccident()
     }
     

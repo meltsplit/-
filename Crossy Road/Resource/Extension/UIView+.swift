@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 extension UIView{
     
+    func addSubviews(_ map: Map) {
+        map.wholeCars().forEach {self.addSubview($0.body)}
+    }
+    
     func addSubviews(_ road: Road) {
         road.vehicles.forEach { self.addSubview($0.body) }
     }

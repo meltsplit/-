@@ -22,6 +22,7 @@
 		8728E561286B9F9200581AC3 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E560286B9F9200581AC3 /* UIView+.swift */; };
 		8728E563286BA05C00581AC3 /* Road.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E562286BA05C00581AC3 /* Road.swift */; };
 		8728E565286BA74200581AC3 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E564286BA74200581AC3 /* Map.swift */; };
+		8728E567286BAF0800581AC3 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E566286BAF0800581AC3 /* SampleData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		8728E560286B9F9200581AC3 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		8728E562286BA05C00581AC3 /* Road.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Road.swift; sourceTree = "<group>"; };
 		8728E564286BA74200581AC3 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		8728E566286BAF0800581AC3 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		FB15D308B47B7ECA038A6721 /* Pods_Crossy_Road.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crossy_Road.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -141,6 +143,7 @@
 				8728E5572869ED1500581AC3 /* Vehicle.swift */,
 				8728E562286BA05C00581AC3 /* Road.swift */,
 				8728E564286BA74200581AC3 /* Map.swift */,
+				8728E566286BAF0800581AC3 /* SampleData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				8728E55A2869F54400581AC3 /* Test2VC.swift in Sources */,
 				8728E563286BA05C00581AC3 /* Road.swift in Sources */,
 				8728E53B286889E200581AC3 /* AppDelegate.swift in Sources */,
+				8728E567286BAF0800581AC3 /* SampleData.swift in Sources */,
 				8728E565286BA74200581AC3 /* Map.swift in Sources */,
 				8728E561286B9F9200581AC3 /* UIView+.swift in Sources */,
 				8728E55E286B821300581AC3 /* GameOverView.swift in Sources */,

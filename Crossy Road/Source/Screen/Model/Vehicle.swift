@@ -15,17 +15,16 @@ protocol movable{
 
 class Vehicle : movable{
     var body = UIView()
-    let y : CGFloat
     let color : UIColor
     let speed : Speed
     var width : CGFloat?
     
-    init(y : CGFloat,color : UIColor,speed : Speed){
-        self.y = y
+    init(/*y : CGFloat, */color : UIColor,speed : Speed){
+        //self.y = y
         self.speed = speed
         self.color = color
         
-        self.body.frame.origin = CGPoint(x: -10000, y: y)
+        self.body.frame.origin.x = -11111
         self.body.backgroundColor = color
     }
     
@@ -60,17 +59,63 @@ class Vehicle : movable{
 }
 
 class Car : Vehicle{
-    override init(y: CGFloat, color: UIColor, speed: Speed) {
-        super.init(y: y, color: color, speed: speed)
+    override init(color: UIColor, speed: Speed) {
+        super.init(color: color, speed: speed)
         body.frame.size = CGSize(width: 40, height: 40)
         width = body.frame.size.width
     }
 }
 
 class Bus : Vehicle{
-    override init(y: CGFloat, color: UIColor, speed: Speed) {
-        super.init(y: y, color: color, speed: speed)
+    override init( color: UIColor, speed: Speed) {
+        super.init(color: color, speed: speed)
         body.frame.size = CGSize(width: 80, height: 40)
         width = body.frame.size.width
     }
+}
+
+extension Vehicle{
+    static var vehicles1 = [
+        Car(color: UIColor.red, speed: Speed.Fast),
+        Car(color: UIColor.orange, speed: Speed.Slow),
+        Bus(color: UIColor.yellow, speed: Speed.Fast),
+        Car(color: UIColor.green, speed: Speed.Normal),
+        Car(color: UIColor.blue, speed: Speed.Fast)
+    ]
+    static var vehicles2 = [
+        Car(color: UIColor.purple, speed: Speed.Fast),
+        Bus(color: UIColor.systemPink, speed: Speed.Fast),
+        Car(color: UIColor.cyan, speed: Speed.VeryFast),
+        Car(color: UIColor.brown, speed: Speed.Slow),
+        Car(color: UIColor.red, speed: Speed.VeryFast)
+    ]
+    static var vehicles3 = [
+        Car(color: UIColor.red, speed: Speed.Fast),
+        Car(color: UIColor.orange, speed: Speed.Slow),
+        Bus(color: UIColor.yellow, speed: Speed.Fast),
+        Car(color: UIColor.green, speed: Speed.Normal),
+        Car(color: UIColor.blue, speed: Speed.Fast)
+    ]
+    static var vehicles4 = [
+        Car(color: UIColor.purple, speed: Speed.Fast),
+        Bus(color: UIColor.systemPink, speed: Speed.Fast),
+        Car(color: UIColor.cyan, speed: Speed.VeryFast),
+        Car(color: UIColor.brown, speed: Speed.Slow),
+        Car(color: UIColor.red, speed: Speed.VeryFast)
+    ]
+    static var vehicles5 = [
+        Car(color: UIColor.purple, speed: Speed.Fast),
+        Bus(color: UIColor.systemPink, speed: Speed.Fast),
+        Car(color: UIColor.cyan, speed: Speed.VeryFast),
+        Car(color: UIColor.brown, speed: Speed.Slow),
+        Car(color: UIColor.red, speed: Speed.VeryFast)
+    ]
+    static var vehicles6 = [
+        Car(color: UIColor.red, speed: Speed.Fast),
+        Car(color: UIColor.orange, speed: Speed.Slow),
+        Bus(color: UIColor.yellow, speed: Speed.Fast),
+        Car(color: UIColor.green, speed: Speed.Normal),
+        Car(color: UIColor.blue, speed: Speed.Fast)
+    ]
+
 }
