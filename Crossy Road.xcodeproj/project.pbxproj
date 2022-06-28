@@ -18,6 +18,10 @@
 		8728E5582869ED1500581AC3 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E5572869ED1500581AC3 /* Vehicle.swift */; };
 		8728E55A2869F54400581AC3 /* Test2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E5592869F54400581AC3 /* Test2VC.swift */; };
 		8728E55C286A0B2500581AC3 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E55B286A0B2500581AC3 /* Enum.swift */; };
+		8728E55E286B821300581AC3 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E55D286B821300581AC3 /* GameOverView.swift */; };
+		8728E561286B9F9200581AC3 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E560286B9F9200581AC3 /* UIView+.swift */; };
+		8728E563286BA05C00581AC3 /* Road.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E562286BA05C00581AC3 /* Road.swift */; };
+		8728E565286BA74200581AC3 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E564286BA74200581AC3 /* Map.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +39,10 @@
 		8728E5572869ED1500581AC3 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		8728E5592869F54400581AC3 /* Test2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2VC.swift; sourceTree = "<group>"; };
 		8728E55B286A0B2500581AC3 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		8728E55D286B821300581AC3 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		8728E560286B9F9200581AC3 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		8728E562286BA05C00581AC3 /* Road.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Road.swift; sourceTree = "<group>"; };
+		8728E564286BA74200581AC3 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		FB15D308B47B7ECA038A6721 /* Pods_Crossy_Road.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crossy_Road.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -98,6 +106,7 @@
 		8728E54F2868A18700581AC3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				8728E55F286B9F8700581AC3 /* Extension */,
 				8728E543286889E400581AC3 /* Assets.xcassets */,
 				8728E548286889E400581AC3 /* Info.plist */,
 				8728E545286889E400581AC3 /* LaunchScreen.storyboard */,
@@ -130,6 +139,8 @@
 			isa = PBXGroup;
 			children = (
 				8728E5572869ED1500581AC3 /* Vehicle.swift */,
+				8728E562286BA05C00581AC3 /* Road.swift */,
+				8728E564286BA74200581AC3 /* Map.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -140,6 +151,7 @@
 				8728E53E286889E200581AC3 /* gameViewController.swift */,
 				8728E5522868D73100581AC3 /* TestVC.swift */,
 				8728E5592869F54400581AC3 /* Test2VC.swift */,
+				8728E55D286B821300581AC3 /* GameOverView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -149,6 +161,14 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		8728E55F286B9F8700581AC3 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8728E560286B9F9200581AC3 /* UIView+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		9C16CB815D5EE011D29F5B8B /* Frameworks */ = {
@@ -279,7 +299,11 @@
 				8728E53F286889E200581AC3 /* gameViewController.swift in Sources */,
 				8728E5582869ED1500581AC3 /* Vehicle.swift in Sources */,
 				8728E55A2869F54400581AC3 /* Test2VC.swift in Sources */,
+				8728E563286BA05C00581AC3 /* Road.swift in Sources */,
 				8728E53B286889E200581AC3 /* AppDelegate.swift in Sources */,
+				8728E565286BA74200581AC3 /* Map.swift in Sources */,
+				8728E561286B9F9200581AC3 /* UIView+.swift in Sources */,
+				8728E55E286B821300581AC3 /* GameOverView.swift in Sources */,
 				8728E53D286889E200581AC3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

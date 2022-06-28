@@ -14,11 +14,15 @@ class gameViewController: UIViewController {
     @IBOutlet weak var player: UIView!
     @IBOutlet weak var car1: UIView!
     
+    let view1 : UIView = {
+        let view = UIView(frame: CGRect(x: 200, y: 400, width: 30, height: 40))
+        view.backgroundColor = .orange
+        return view
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-      moveRight()
+       
     }
     
     func moveRight(){

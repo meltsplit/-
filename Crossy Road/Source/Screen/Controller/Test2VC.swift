@@ -8,51 +8,65 @@
 import Foundation
 import UIKit
 
-class Test2VC : UIViewController{
+class Test2VC : UIViewController , GameOverDelegate{
   
-    let player = UIView(frame: CGRect(x: 212, y: 200, width: 40, height: 40))
+    @IBOutlet weak var scoreLabel: UILabel!
     
-    let car1 = Car(y: 200, color: UIColor.orange, speed: Speed.Fast)
-    let car2 = Car(y: 200, color: UIColor.green, speed: Speed.Normal)
-    let bus1 = Bus(y: 400, color: UIColor.blue, speed: Speed.Slow)
-    let car3 = Car(y: 400, color: UIColor.orange, speed: Speed.Fast)
+    let startRect = CGRect(x: 208, y: 800, width: 40, height: 40)
     
-    var road1 : [Vehicle]?
-    var road2 : [Vehicle]?
+    var score = 0{
+        didSet{
+            scoreLabel.text = String(score)
+        }
+    }
+    var howFar : CGFloat = 800
+    
+    let player = UIView()
+    
+    var wholeCar : [Vehicle]!
+    
+    var road1 : Road!
+    var road2 : Road!
+    var map = Map()
+    let gameOverVC : GameOverViewController = {
+        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GameOverViewController") as! GameOverViewController
+        vc.modalPresentationStyle = .overCurrentContext
+        return vc
+    }()
     //MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        road1 = Road.road1
+        road2 = Road.road2
+        map.roads = [road1,road2]
+        wholeCar = map.wholeCars()
+        
+        view.addSubview(player)
+        view.addSubviews(road1)
+        view.addSubviews(road2)
+        
+        
+        gameOverVC.delegate = self
+        
+        player.frame = startRect
         player.backgroundColor = .red
         
-     
-        
-        road1 = [car1,car2]
-        road2 = [car3,bus1]
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        view.addSubview(player)
-        view.addSubview(car1.body)
-        view.addSubview(car2.body)
-        view.addSubview(car3.body)
-        view.addSubview(bus1.body)
-        view.willRemoveSubview(car1.body)
-        view.willRemoveSubview(car2.body)
-        view.willRemoveSubview(car3.body)
-        view.willRemoveSubview(bus1.body)
-        moveCar(road1!, Direction.Left,delay: Second.sec(4))
-        moveCar(road2!, Direction.Right,delay: Second.sec(4))
+        moveCar(road1, Direction.Left,delay: Second.sec(4))
+        moveCar(road2, Direction.Right,delay: Second.sec(4))
         checkAccident()
     }
     
-    private func moveCar(_ road : [Vehicle],_ direction : Direction ,delay : useconds_t){
+    private func moveCar(_ road : Road,_ direction : Direction ,delay : useconds_t){
         DispatchQueue.global().async {
-            while(true){
-                for car in road {
+            while true {
+                for car in road.vehicles {
                     switch(direction){
                     case Direction.Right : car.moveRight()
                     case Direction.Left  : car.moveLeft()
@@ -63,76 +77,76 @@ class Test2VC : UIViewController{
         }
     }
     
-    private func checkAccident(){
+    private func checkAccident() {
+        var dead = false
         DispatchQueue.global().async {
-            while true{
+            while (!dead){
                 DispatchQueue.main.async {
-                    for car in self.road1!{
+                    for car in self.wholeCar{
                         if (self.player.center == car.body.center){
                             print("교통사고!")
-                        }
-                    }
-                    for car in self.road2!{
-                        if (self.player.center == car.body.center){
-                            print("교통사고!")
+                            dead = true
+                            self.present(self.gameOverVC, animated: false)
                         }
                     }
                 }
                 usleep(Speed.VeryFast.rawValue)
             }
-            
         }
+    }
+    
+    private func calculateScore(){
+        if ( self.player.frame.origin.y < self.howFar ){
+            score += 1
+        }
+    }
+    
+    private func movePlayer(to : SwipeDir){
+        
+        var rect : CGPoint
+        switch(to){
+        case .SwipeUp: rect = CGPoint(x: self.player.frame.minX, y: self.player.frame.minY - 40)
+        case .SwipeDown: rect = CGPoint(x: self.player.frame.minX, y: self.player.frame.minY + 40)
+        case .SwipeLeft: rect = CGPoint(x: self.player.frame.minX - 40, y: self.player.frame.minY)
+        case .SwipeRight: rect =  CGPoint(x: self.player.frame.minX + 40, y: self.player.frame.minY)
+        }
+        
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0.5,
+            animations: {self.player.frame.origin = rect}
+        )
+    }
+    
+    func resetGame() {
+        self.player.frame = self.startRect
+        score = 0
+        checkAccident()
     }
     
     //MARK: - IBAction
     @IBAction func tap(_ sender: Any) {
-        
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0,
-            usingSpringWithDamping: 0.5,
-            initialSpringVelocity: 0.5,
-          animations: {self.player.frame = CGRect(x: self.player.frame.minX, y: self.player.frame.minY - 40, width: 40, height: 40)}
-        )
+        movePlayer(to: .SwipeUp)
+        calculateScore()
     }
     @IBAction func swipeUp(_ sender: Any) {
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0,
-            usingSpringWithDamping: 0.5,
-            initialSpringVelocity: 0.5,
-          animations: {self.player.frame = CGRect(x: self.player.frame.minX, y: self.player.frame.minY - 40, width: 40, height: 40)}
-        )
+        movePlayer(to: .SwipeUp)
+        calculateScore()
         
     }
     @IBAction func swipeDown(_ sender: Any) {
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0,
-            usingSpringWithDamping: 0.5,
-            initialSpringVelocity: 0.5,
-          animations: {self.player.frame = CGRect(x: self.player.frame.minX, y: self.player.frame.minY + 40, width: 40, height: 40)}
-        )
+        movePlayer(to: .SwipeDown)
        
     }
     @IBAction func swipeLeft(_ sender: Any) {
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0,
-            usingSpringWithDamping: 0.5,
-            initialSpringVelocity: 0.5,
-          animations: {self.player.frame = CGRect(x: self.player.frame.minX - 40, y: self.player.frame.minY, width: 40, height: 40)}
-        )
+        movePlayer(to: .SwipeLeft)
     }
     @IBAction func swipeRight(_ sender: Any) {
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0,
-            usingSpringWithDamping: 0.5,
-            initialSpringVelocity: 0.5,
-          animations: {self.player.frame = CGRect(x: self.player.frame.minX + 40, y: self.player.frame.minY, width: 40, height: 40)}
-        )
+        movePlayer(to: .SwipeRight)
     }
+    
     
     
 }
