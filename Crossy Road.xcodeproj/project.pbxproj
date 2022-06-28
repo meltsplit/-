@@ -118,10 +118,10 @@
 		8728E5512868A1B100581AC3 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				8728E540286889E200581AC3 /* Main.storyboard */,
 				8728E5542869ECD000581AC3 /* Model */,
 				8728E5562869ECDA00581AC3 /* View */,
 				8728E5552869ECD500581AC3 /* Controller */,
-				8728E540286889E200581AC3 /* Main.storyboard */,
 			);
 			path = Screen;
 			sourceTree = "<group>";

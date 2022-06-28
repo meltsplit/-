@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 enum Speed : UInt32{
     case VerySlow = 10000
     case Slow = 8000

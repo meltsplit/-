@@ -10,7 +10,7 @@ import UIKit
 
 class Test2VC : UIViewController{
   
-    let player = UIView(frame: CGRect(x: 300, y: 200, width: 40, height: 40))
+    let player = UIView(frame: CGRect(x: 212, y: 200, width: 40, height: 40))
     
     let car1 = Car(y: 200, color: UIColor.orange, speed: Speed.Fast)
     let car2 = Car(y: 200, color: UIColor.green, speed: Speed.Normal)
@@ -26,11 +26,7 @@ class Test2VC : UIViewController{
         
         player.backgroundColor = .red
         
-        view.addSubview(player)
-        view.addSubview(car1.body)
-        view.addSubview(car2.body)
-        view.addSubview(car3.body)
-        view.addSubview(bus1.body)
+     
         
         road1 = [car1,car2]
         road2 = [car3,bus1]
@@ -38,21 +34,32 @@ class Test2VC : UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        moveCar(road1!, Direction.Left,delay: Second.sec(4))
-        moveCar(road2!, Direction.Right,delay: Second.sec(2))
-    }
         
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        view.addSubview(player)
+        view.addSubview(car1.body)
+        view.addSubview(car2.body)
+        view.addSubview(car3.body)
+        view.addSubview(bus1.body)
+        view.willRemoveSubview(car1.body)
+        view.willRemoveSubview(car2.body)
+        view.willRemoveSubview(car3.body)
+        view.willRemoveSubview(bus1.body)
+        moveCar(road1!, Direction.Left,delay: Second.sec(4))
+        moveCar(road2!, Direction.Right,delay: Second.sec(4))
         checkAccident()
     }
     
     private func moveCar(_ road : [Vehicle],_ direction : Direction ,delay : useconds_t){
         DispatchQueue.global().async {
+            while(true){
                 for car in road {
-                    car.move(direction)
-                    usleep(delay)
+                    switch(direction){
+                    case Direction.Right : car.moveRight()
+                    case Direction.Left  : car.moveLeft()
+                    }
+                usleep(delay)
                 }
+            }
         }
     }
     
@@ -60,27 +67,72 @@ class Test2VC : UIViewController{
         DispatchQueue.global().async {
             while true{
                 DispatchQueue.main.async {
-                    if (self.player.center == self.car1.body.center){
-                        print("crash Boom!!")
+                    for car in self.road1!{
+                        if (self.player.center == car.body.center){
+                            print("교통사고!")
+                        }
+                    }
+                    for car in self.road2!{
+                        if (self.player.center == car.body.center){
+                            print("교통사고!")
+                        }
                     }
                 }
-                usleep(Speed.VerySlow.rawValue)
+                usleep(Speed.VeryFast.rawValue)
             }
             
         }
     }
     
-//    private func moveCarRight(car: UIView, y:Int, size : CGSize){
-//        DispatchQueue.global().async {
-//            var x = -80
-//            while (true){
-//                x = x + 1
-//                DispatchQueue.main.async {
-//                    car.frame = CGRect(origin: CGPoint(x: x,y: y), size: size)
-//                    self.checkAccident(car: car)
-//                }
-//                usleep(8000)
-//               
-//            }
-//        }
+    //MARK: - IBAction
+    @IBAction func tap(_ sender: Any) {
+        
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0.5,
+          animations: {self.player.frame = CGRect(x: self.player.frame.minX, y: self.player.frame.minY - 40, width: 40, height: 40)}
+        )
     }
+    @IBAction func swipeUp(_ sender: Any) {
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0.5,
+          animations: {self.player.frame = CGRect(x: self.player.frame.minX, y: self.player.frame.minY - 40, width: 40, height: 40)}
+        )
+        
+    }
+    @IBAction func swipeDown(_ sender: Any) {
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0.5,
+          animations: {self.player.frame = CGRect(x: self.player.frame.minX, y: self.player.frame.minY + 40, width: 40, height: 40)}
+        )
+       
+    }
+    @IBAction func swipeLeft(_ sender: Any) {
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0.5,
+          animations: {self.player.frame = CGRect(x: self.player.frame.minX - 40, y: self.player.frame.minY, width: 40, height: 40)}
+        )
+    }
+    @IBAction func swipeRight(_ sender: Any) {
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0.5,
+          animations: {self.player.frame = CGRect(x: self.player.frame.minX + 40, y: self.player.frame.minY, width: 40, height: 40)}
+        )
+    }
+    
+    
+}

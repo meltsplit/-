@@ -7,11 +7,13 @@
 
 import Foundation
 import UIKit
-protocol moveProtocol{
-    func move(_ direction : Direction)
-    //func moveLeft()
+
+protocol movable{
+    func moveRight()
+    func moveLeft()
 }
-class Vehicle : moveProtocol{
+
+class Vehicle : movable{
     var body = UIView()
     let y : CGFloat
     let color : UIColor
@@ -26,13 +28,26 @@ class Vehicle : moveProtocol{
         self.body.backgroundColor = color
     }
     
-    func move(_ direction : Direction ) {
-        var x : CGFloat = (direction == Direction.Left) ? -200 : 414
+    func moveRight() {
+        var x : CGFloat = -200
         DispatchQueue.global().async {
-            while (true){
-                x = (direction == Direction.Left) ? x + 1 : x - 1
+            while (x < 414){
+                x =  x + 1
                 DispatchQueue.main.async {
-                    
+                    self.body.frame = CGRect(origin: CGPoint(x: x,y: self.body.frame.origin.y), size: self.body.frame.size)
+                }
+                usleep(self.speed.rawValue)
+               
+            }
+        }
+    }
+    
+    func moveLeft() {
+        var x : CGFloat = 414
+        DispatchQueue.global().async {
+            while (x > -self.body.frame.width){
+                x = x - 1
+                DispatchQueue.main.async {
                     self.body.frame = CGRect(origin: CGPoint(x: x,y: self.body.frame.origin.y), size: self.body.frame.size)
                 }
                 usleep(self.speed.rawValue)
