@@ -18,6 +18,7 @@ class Vehicle : movable{
     let y : CGFloat
     let color : UIColor
     let speed : Speed
+    var width : CGFloat?
     
     init(y : CGFloat,color : UIColor,speed : Speed){
         self.y = y
@@ -29,7 +30,7 @@ class Vehicle : movable{
     }
     
     func moveRight() {
-        var x : CGFloat = -200
+        var x : CGFloat = -self.width!
         DispatchQueue.global().async {
             while (x < 414){
                 x =  x + 1
@@ -45,7 +46,7 @@ class Vehicle : movable{
     func moveLeft() {
         var x : CGFloat = 414
         DispatchQueue.global().async {
-            while (x > -self.body.frame.width){
+            while (x > -self.width!){
                 x = x - 1
                 DispatchQueue.main.async {
                     self.body.frame = CGRect(origin: CGPoint(x: x,y: self.body.frame.origin.y), size: self.body.frame.size)
@@ -62,6 +63,7 @@ class Car : Vehicle{
     override init(y: CGFloat, color: UIColor, speed: Speed) {
         super.init(y: y, color: color, speed: speed)
         body.frame.size = CGSize(width: 40, height: 40)
+        width = body.frame.size.width
     }
 }
 
@@ -69,5 +71,6 @@ class Bus : Vehicle{
     override init(y: CGFloat, color: UIColor, speed: Speed) {
         super.init(y: y, color: color, speed: speed)
         body.frame.size = CGSize(width: 80, height: 40)
+        width = body.frame.size.width
     }
 }
