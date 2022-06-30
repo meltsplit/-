@@ -5,7 +5,6 @@
 //  Created by 장석우 on 2022/06/27.
 //
 
-import Foundation
 import UIKit
 
 protocol movable{
@@ -13,31 +12,37 @@ protocol movable{
     func moveLeft()
 }
 
-class Vehicle : movable{
+class Vehicle : movable {
+   
+    var stop: Bool = false
+    
     var body = UIView()
     let color : UIColor
     let speed : Speed
     var width : CGFloat?
     
-    init(/*y : CGFloat, */color : UIColor,speed : Speed){
-        //self.y = y
+    init(color : UIColor,speed : Speed){
         self.speed = speed
         self.color = color
         
         self.body.frame.origin.x = -11111
         self.body.backgroundColor = color
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleStop), name: NSNotification.Name(rawValue: "stop"), object: nil)
     }
     
     func moveRight() {
         var x : CGFloat = -self.width!
         DispatchQueue.global().async {
             while (x < 414){
-                x =  x + 1
-                DispatchQueue.main.async {
-                    self.body.frame = CGRect(origin: CGPoint(x: x,y: self.body.frame.origin.y), size: self.body.frame.size)
+                if (!self.stop){
+                    x =  x + 1
+                    DispatchQueue.main.async {
+                        self.body.frame = CGRect(origin: CGPoint(x: x,y: self.body.frame.origin.y), size: self.body.frame.size)
+                    }
+                    usleep(self.speed.rawValue)
                 }
-                usleep(self.speed.rawValue)
-               
+                
             }
         }
     }
@@ -46,14 +51,19 @@ class Vehicle : movable{
         var x : CGFloat = 414
         DispatchQueue.global().async {
             while (x > -self.width!){
-                x = x - 1
-                DispatchQueue.main.async {
-                    self.body.frame = CGRect(origin: CGPoint(x: x,y: self.body.frame.origin.y), size: self.body.frame.size)
+                if (!self.stop){
+                    x = x - 1
+                    DispatchQueue.main.async {
+                        self.body.frame = CGRect(origin: CGPoint(x: x,y: self.body.frame.origin.y), size: self.body.frame.size)
+                    }
+                    usleep(self.speed.rawValue)
                 }
-                usleep(self.speed.rawValue)
                
             }
         }
+    }
+    @objc func toggleStop(_ notification : NSNotification){
+        stop = notification.object as? Bool ?? false
     }
     
 }

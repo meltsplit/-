@@ -5,7 +5,6 @@
 //  Created by 장석우 on 2022/06/29.
 //
 
-import Foundation
 import UIKit
 class Road{
     let vehicles : [Vehicle]

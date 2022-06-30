@@ -9,6 +9,7 @@ import Foundation
 
 struct Map{
     var roads : [Road]
+    lazy var wholeCar = self.wholeCars()
     
     func wholeCars()->[Vehicle]{
         var vehicleList : [Vehicle] = []

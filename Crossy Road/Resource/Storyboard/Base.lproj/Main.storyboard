@@ -360,78 +360,10 @@
             </objects>
             <point key="canvasLocation" x="859" y="-536"/>
         </scene>
-        <!--TestVC-->
-        <scene sceneID="BOg-GG-c8C">
-            <objects>
-                <viewController id="jZL-31-T05" customClass="TestVC" customModule="Crossy_Road" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zed-Nv-x25">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KfI-ZV-A5K">
-                                <rect key="frame" x="0.0" y="200" width="414" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGray3Color"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C35-to-wni">
-                                <rect key="frame" x="300" y="200" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemRedColor"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nRv-dc-EXr">
-                                <rect key="frame" x="0.0" y="200" width="80" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VJg-df-O0b">
-                                <rect key="frame" x="0.0" y="400" width="414" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGray4Color"/>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="W60-p2-JaY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="f4k-OY-geL" appends="YES" id="Fge-hM-K06"/>
-                            <outletCollection property="gestureRecognizers" destination="Qh7-hg-EVQ" appends="YES" id="67R-9v-ECG"/>
-                            <outletCollection property="gestureRecognizers" destination="8Do-ny-Vt7" appends="YES" id="rNA-it-nbp"/>
-                            <outletCollection property="gestureRecognizers" destination="020-oL-EIX" appends="YES" id="uhS-8o-TxA"/>
-                        </connections>
-                    </view>
-                    <connections>
-                        <outlet property="car1" destination="nRv-dc-EXr" id="QPn-kg-x6N"/>
-                        <outlet property="player" destination="C35-to-wni" id="4nQ-BP-UfB"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XcN-bd-GSn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="up" id="Qh7-hg-EVQ" userLabel="Up">
-                    <connections>
-                        <action selector="swipeUp:" destination="jZL-31-T05" id="3qP-1S-CvN"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="down" id="f4k-OY-geL" userLabel="Down">
-                    <connections>
-                        <action selector="swipeDown:" destination="jZL-31-T05" id="0s7-Ny-zfC"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="8Do-ny-Vt7" userLabel="Right">
-                    <connections>
-                        <action selector="swipeRight:" destination="jZL-31-T05" id="kZK-tr-png"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="020-oL-EIX" userLabel="Left">
-                    <connections>
-                        <action selector="swipeLeft:" destination="jZL-31-T05" id="N0H-qK-xYy"/>
-                    </connections>
-                </swipeGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="1161" y="344"/>
-        </scene>
-        <!--Test2VC-->
+        <!--Game View Controller-->
         <scene sceneID="bK2-16-ejs">
             <objects>
-                <viewController id="yZ3-9E-wxf" customClass="Test2VC" customModule="Crossy_Road" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yZ3-9E-wxf" customClass="GameViewController" customModule="Crossy_Road" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xx2-yd-f6k">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -467,7 +399,7 @@
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPJ-Vu-VWO">
-                                <rect key="frame" x="50" y="50" width="30" height="54"/>
+                                <rect key="frame" x="40" y="50" width="30" height="54"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -477,7 +409,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="uPJ-Vu-VWO" firstAttribute="leading" secondItem="oXk-Aq-49m" secondAttribute="leading" constant="50" id="Hrf-cR-aYH"/>
+                            <constraint firstItem="uPJ-Vu-VWO" firstAttribute="leading" secondItem="oXk-Aq-49m" secondAttribute="leading" constant="40" id="Hrf-cR-aYH"/>
                             <constraint firstItem="uPJ-Vu-VWO" firstAttribute="top" secondItem="xx2-yd-f6k" secondAttribute="top" constant="50" id="wfp-6a-e8K"/>
                         </constraints>
                         <connections>
@@ -529,14 +461,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4fd-dT-jyb">
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4fd-dT-jyb">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemCyanColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DqD-ea-4Ml">
                                 <rect key="frame" x="48.5" y="412" width="317" height="72"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="60"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fa2-EE-m33" userLabel="현재점수">
+                                <rect key="frame" x="162.5" y="94" width="89" height="42"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahc-UZ-brx" userLabel="최고 점수">
+                                <rect key="frame" x="174" y="166" width="66.5" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="25"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9F-Fp-1if">
@@ -571,7 +515,9 @@
                         <viewLayoutGuide key="safeArea" id="YtG-WK-iOP"/>
                         <constraints>
                             <constraint firstItem="YtG-WK-iOP" firstAttribute="trailing" secondItem="k9F-Fp-1if" secondAttribute="trailing" constant="80" id="1Ct-SE-6tx"/>
+                            <constraint firstItem="ahc-UZ-brx" firstAttribute="top" secondItem="Fa2-EE-m33" secondAttribute="bottom" constant="30" id="9tf-T3-3kO"/>
                             <constraint firstItem="YtG-WK-iOP" firstAttribute="bottom" secondItem="k9F-Fp-1if" secondAttribute="bottom" constant="50" id="G23-8s-ukg"/>
+                            <constraint firstItem="ahc-UZ-brx" firstAttribute="centerX" secondItem="BAv-kd-Gry" secondAttribute="centerX" id="PH9-Cb-dA2"/>
                             <constraint firstItem="DqD-ea-4Ml" firstAttribute="centerY" secondItem="BAv-kd-Gry" secondAttribute="centerY" id="V81-Vu-kDz"/>
                             <constraint firstItem="4fd-dT-jyb" firstAttribute="top" secondItem="BAv-kd-Gry" secondAttribute="top" id="VEd-z0-YBK"/>
                             <constraint firstItem="DqD-ea-4Ml" firstAttribute="centerX" secondItem="BAv-kd-Gry" secondAttribute="centerX" id="Zdc-Jm-4aY"/>
@@ -579,13 +525,19 @@
                             <constraint firstItem="8fC-R1-7vA" firstAttribute="leading" secondItem="YtG-WK-iOP" secondAttribute="leading" constant="80" id="gBN-Ec-GpF"/>
                             <constraint firstItem="4fd-dT-jyb" firstAttribute="leading" secondItem="YtG-WK-iOP" secondAttribute="leading" id="gWC-xY-q3i"/>
                             <constraint firstItem="YtG-WK-iOP" firstAttribute="trailing" secondItem="4fd-dT-jyb" secondAttribute="trailing" id="h33-Mb-J6P"/>
+                            <constraint firstItem="Fa2-EE-m33" firstAttribute="top" secondItem="YtG-WK-iOP" secondAttribute="top" constant="50" id="jvt-eQ-qef"/>
+                            <constraint firstItem="Fa2-EE-m33" firstAttribute="centerX" secondItem="BAv-kd-Gry" secondAttribute="centerX" id="p0U-hk-uHB"/>
                             <constraint firstAttribute="bottom" secondItem="4fd-dT-jyb" secondAttribute="bottom" id="w2C-F9-Bjh"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currentScoreLabel" destination="Fa2-EE-m33" id="hAF-RE-foc"/>
+                        <outlet property="highestScoreLabel" destination="ahc-UZ-brx" id="OZy-ib-Ulb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kQ6-t2-SKl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2957.971014492754" y="168.75"/>
+            <point key="canvasLocation" x="2965" y="501"/>
         </scene>
     </scenes>
     <resources>
@@ -597,17 +549,14 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

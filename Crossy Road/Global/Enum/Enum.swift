@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 enum Speed : UInt32{
     case VerySlow = 10000
     case Slow = 8000
@@ -31,10 +31,12 @@ enum GameOver : Error {
     case roadKill
 }
 
+
 class Second{
     static func sec(_ sec : Int) -> UInt32{
         return UInt32(sec*1000000)
     }
 }
+
 
 
