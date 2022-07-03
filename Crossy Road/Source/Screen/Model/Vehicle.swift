@@ -15,45 +15,48 @@ protocol movable{
 class Vehicle : movable {
    
     var stop: Bool = false
-    
-    var body = UIView()
-    let color : UIColor
+    let operationq = OperationQueue()
+    var body = UIImageView()
+    let image : String
     let speed : Speed
     var width : CGFloat?
     
-    init(color : UIColor,speed : Speed){
+    init(image : String,speed : Speed){
         self.speed = speed
-        self.color = color
+        self.image = image
         
         self.body.frame.origin.x = -11111
-        self.body.backgroundColor = color
+        self.body.image = UIImage(named: image)
         
         NotificationCenter.default.addObserver(self, selector: #selector(toggleStop), name: NSNotification.Name(rawValue: "stop"), object: nil)
     }
     
     func moveRight() {
         var x : CGFloat = -self.width!
-        DispatchQueue.global().async {
+        operationq.addOperation {
             while (x < 414){
                 if (!self.stop){
+                    
+                
                     x =  x + 1
-                    DispatchQueue.main.async {
+                OperationQueue.main.addOperation {
                         self.body.frame = CGRect(origin: CGPoint(x: x,y: self.body.frame.origin.y), size: self.body.frame.size)
                     }
                     usleep(self.speed.rawValue)
                 }
                 
             }
+            
         }
     }
     
     func moveLeft() {
         var x : CGFloat = 414
-        DispatchQueue.global().async {
+        operationq.addOperation {
             while (x > -self.width!){
                 if (!self.stop){
                     x = x - 1
-                    DispatchQueue.main.async {
+                    OperationQueue.main.addOperation {
                         self.body.frame = CGRect(origin: CGPoint(x: x,y: self.body.frame.origin.y), size: self.body.frame.size)
                     }
                     usleep(self.speed.rawValue)
@@ -64,68 +67,97 @@ class Vehicle : movable {
     }
     @objc func toggleStop(_ notification : NSNotification){
         stop = notification.object as? Bool ?? false
+        operationq.cancelAllOperations()
     }
     
 }
 
 class Car : Vehicle{
-    override init(color: UIColor, speed: Speed) {
-        super.init(color: color, speed: speed)
-        body.frame.size = CGSize(width: 40, height: 40)
+    override init(image: String, speed: Speed) {
+        super.init(image: image, speed: speed)
+        body.frame.size = CGSize(width: 80, height: 40)
         width = body.frame.size.width
     }
 }
 
 class Bus : Vehicle{
-    override init( color: UIColor, speed: Speed) {
-        super.init(color: color, speed: speed)
+    override init(image: String, speed: Speed) {
+        super.init(image: image, speed: speed)
         body.frame.size = CGSize(width: 80, height: 40)
+        width = body.frame.size.width
+    }
+}
+
+class Train : Vehicle{
+    override init(image: String, speed: Speed) {
+        super.init(image: image, speed: speed)
+        body.frame.size = CGSize(width: 306, height: 40)
+        body.image = UIImage(named: Image.train)
         width = body.frame.size.width
     }
 }
 
 extension Vehicle{
     static var vehicles1 = [
-        Car(color: UIColor.red, speed: Speed.Fast),
-        Car(color: UIColor.orange, speed: Speed.Slow),
-        Bus(color: UIColor.yellow, speed: Speed.Fast),
-        Car(color: UIColor.green, speed: Speed.Normal),
-        Car(color: UIColor.blue, speed: Speed.Fast)
+        Car(image: Image.car3_left, speed: Speed.Fast),
+        Car(image: Image.car2_left, speed: Speed.Slow),
+        Bus(image: Image.bus_left, speed: Speed.Fast),
+        Car(image: Image.car3_left, speed: Speed.Normal),
+        Car(image: Image.car1_left, speed: Speed.Fast)
     ]
     static var vehicles2 = [
-        Car(color: UIColor.purple, speed: Speed.Fast),
-        Bus(color: UIColor.systemPink, speed: Speed.Fast),
-        Car(color: UIColor.cyan, speed: Speed.VeryFast),
-        Car(color: UIColor.brown, speed: Speed.Slow),
-        Car(color: UIColor.red, speed: Speed.VeryFast)
+        Car(image: Image.car2, speed: Speed.VeryFast),
+        Bus(image: Image.bus, speed: Speed.Fast),
+        Car(image: Image.car2, speed: Speed.VeryFast),
+        Car(image: Image.car3, speed: Speed.Fast),
+        Car(image: Image.car2, speed: Speed.VeryFast)
     ]
     static var vehicles3 = [
-        Car(color: UIColor.red, speed: Speed.Fast),
-        Car(color: UIColor.orange, speed: Speed.Slow),
-        Bus(color: UIColor.yellow, speed: Speed.Fast),
-        Car(color: UIColor.green, speed: Speed.Normal),
-        Car(color: UIColor.blue, speed: Speed.Fast)
+        Car(image: Image.car2_left, speed: Speed.Fast),
+        Car(image: Image.car2_left, speed: Speed.Slow),
+        Bus(image: Image.bus_left, speed: Speed.Fast),
+        Car(image: Image.car2_left, speed: Speed.Normal),
+        Car(image: Image.car3_left, speed: Speed.Fast)
     ]
     static var vehicles4 = [
-        Car(color: UIColor.purple, speed: Speed.Fast),
-        Bus(color: UIColor.systemPink, speed: Speed.Fast),
-        Car(color: UIColor.cyan, speed: Speed.VeryFast),
-        Car(color: UIColor.brown, speed: Speed.Slow),
-        Car(color: UIColor.red, speed: Speed.VeryFast)
+        Car(image: Image.car1, speed: Speed.Fast),
+        Bus(image: Image.car1, speed: Speed.Fast),
+        Car(image: Image.car3, speed: Speed.VeryFast),
+        Car(image: Image.car2, speed: Speed.Slow),
+        Car(image: Image.car1, speed: Speed.VeryFast)
     ]
     static var vehicles5 = [
-        Car(color: UIColor.purple, speed: Speed.Fast),
-        Bus(color: UIColor.systemPink, speed: Speed.Fast),
-        Car(color: UIColor.cyan, speed: Speed.VeryFast),
-        Car(color: UIColor.brown, speed: Speed.Slow),
-        Car(color: UIColor.red, speed: Speed.VeryFast)
+        Car(image: Image.car2_left, speed: Speed.Fast),
+        Car(image: Image.car2_left, speed: Speed.Slow),
+        Bus(image: Image.bus_left, speed: Speed.Fast),
+        Car(image: Image.car2_left, speed: Speed.Normal),
+        Car(image: Image.car3_left, speed: Speed.Fast)
     ]
     static var vehicles6 = [
-        Car(color: UIColor.red, speed: Speed.Fast),
-        Car(color: UIColor.orange, speed: Speed.Slow),
-        Bus(color: UIColor.yellow, speed: Speed.Fast),
-        Car(color: UIColor.green, speed: Speed.Normal),
-        Car(color: UIColor.blue, speed: Speed.Fast)
+        Car(image: Image.car3, speed: Speed.Fast),
+        Bus(image: Image.car1, speed: Speed.Fast),
+        Car(image: Image.car3, speed: Speed.VeryFast),
+        Car(image: Image.car2, speed: Speed.Fast),
+        Car(image: Image.car1, speed: Speed.VeryFast)
     ]
+    
+    
+    
+    
+    
+//    static var vehicles5 = [
+//        Car(color: UIColor.purple, speed: Speed.Fast),
+//        Bus(color: UIColor.systemPink, speed: Speed.Fast),
+//        Car(color: UIColor.cyan, speed: Speed.VeryFast),
+//        Car(color: UIColor.brown, speed: Speed.Slow),
+//        Car(color: UIColor.red, speed: Speed.VeryFast)
+//    ]
+//    static var vehicles6 = [
+//        Car(color: UIColor.red, speed: Speed.Fast),
+//        Car(color: UIColor.orange, speed: Speed.Slow),
+//        Bus(color: UIColor.yellow, speed: Speed.Fast),
+//        Car(color: UIColor.green, speed: Speed.Normal),
+//        Car(color: UIColor.blue, speed: Speed.Fast)
+//    ]
 
 }

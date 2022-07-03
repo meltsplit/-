@@ -29,6 +29,7 @@ extension Map{
         Road.road3,
         Road.road4,
         Road.road5,
-        Road.road6
+        Road.road6,
+        Road.road7
     ])
 }

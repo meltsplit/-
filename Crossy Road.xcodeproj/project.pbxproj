@@ -23,6 +23,10 @@
 		8728E567286BAF0800581AC3 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8728E566286BAF0800581AC3 /* SampleData.swift */; };
 		87EEB7DF286CA70E00FB43D4 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EEB7DE286CA70E00FB43D4 /* Game.swift */; };
 		87EEB7E1286E24FF00FB43D4 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EEB7E0286E24FF00FB43D4 /* Tree.swift */; };
+		87EEB7E32871D78E00FB43D4 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EEB7E22871D78E00FB43D4 /* Image.swift */; };
+		87EEB7E6287234C100FB43D4 /* jump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 87EEB7E5287234C100FB43D4 /* jump.mp3 */; };
+		87EEB7E8287234CA00FB43D4 /* road.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 87EEB7E7287234CA00FB43D4 /* road.mp3 */; };
+		87EEB7EA287236DE00FB43D4 /* break.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 87EEB7E9287236DE00FB43D4 /* break.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +49,10 @@
 		8728E566286BAF0800581AC3 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		87EEB7DE286CA70E00FB43D4 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		87EEB7E0286E24FF00FB43D4 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		87EEB7E22871D78E00FB43D4 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		87EEB7E5287234C100FB43D4 /* jump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = jump.mp3; path = ../../../../../../Downloads/jump.mp3; sourceTree = "<group>"; };
+		87EEB7E7287234CA00FB43D4 /* road.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = road.mp3; path = ../../../../../../Downloads/road.mp3; sourceTree = "<group>"; };
+		87EEB7E9287236DE00FB43D4 /* break.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = break.mp3; path = ../../../../../../Downloads/break.mp3; sourceTree = "<group>"; };
 		FB15D308B47B7ECA038A6721 /* Pods_Crossy_Road.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crossy_Road.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -108,6 +116,7 @@
 		8728E54F2868A18700581AC3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				87EEB7E4287234A300FB43D4 /* Sounds */,
 				8728E56F286C848200581AC3 /* Asset */,
 				8728E56A286C83F000581AC3 /* Storyboard */,
 				8728E56B286C841D00581AC3 /* Support */,
@@ -194,6 +203,7 @@
 		8728E56D286C845100581AC3 /* Constant */ = {
 			isa = PBXGroup;
 			children = (
+				87EEB7E22871D78E00FB43D4 /* Image.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -212,6 +222,16 @@
 				8728E543286889E400581AC3 /* Assets.xcassets */,
 			);
 			path = Asset;
+			sourceTree = "<group>";
+		};
+		87EEB7E4287234A300FB43D4 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				87EEB7E7287234CA00FB43D4 /* road.mp3 */,
+				87EEB7E9287236DE00FB43D4 /* break.mp3 */,
+				87EEB7E5287234C100FB43D4 /* jump.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		9C16CB815D5EE011D29F5B8B /* Frameworks */ = {
@@ -282,8 +302,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87EEB7E6287234C100FB43D4 /* jump.mp3 in Resources */,
 				8728E547286889E400581AC3 /* LaunchScreen.storyboard in Resources */,
+				87EEB7E8287234CA00FB43D4 /* road.mp3 in Resources */,
 				8728E544286889E400581AC3 /* Assets.xcassets in Resources */,
+				87EEB7EA287236DE00FB43D4 /* break.mp3 in Resources */,
 				8728E542286889E200581AC3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,6 +366,7 @@
 				8728E563286BA05C00581AC3 /* Road.swift in Sources */,
 				8728E53B286889E200581AC3 /* AppDelegate.swift in Sources */,
 				8728E567286BAF0800581AC3 /* SampleData.swift in Sources */,
+				87EEB7E32871D78E00FB43D4 /* Image.swift in Sources */,
 				87EEB7DF286CA70E00FB43D4 /* Game.swift in Sources */,
 				8728E565286BA74200581AC3 /* Map.swift in Sources */,
 				8728E561286B9F9200581AC3 /* UIView+.swift in Sources */,

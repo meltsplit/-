@@ -23,7 +23,8 @@ extension Road{
     static var road1 = Road(Vehicle.vehicles1, y: 720)
     static var road2 = Road(Vehicle.vehicles2, y: 600)
     static var road3 = Road(Vehicle.vehicles3, y: 560)
-    static var road4 = Road(Vehicle.vehicles4, y: 400)
-    static var road5 = Road(Vehicle.vehicles5, y: 360)
-    static var road6 = Road(Vehicle.vehicles6, y: 200)
+    static var road4 = Road(Vehicle.vehicles4, y: 440)
+    static var road5 = Road(Vehicle.vehicles5, y: 400)
+    static var road6 = Road(Vehicle.vehicles6, y: 240)
+    static var road7 = Road([Train(image: "train", speed: Speed.VeryVeryFast)], y: 200)
 }

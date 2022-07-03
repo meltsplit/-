@@ -7,14 +7,18 @@
 
 import UIKit
 import SnapKit
+import AVFoundation
 
 class GameViewController : UIViewController,GameOverDelegate {
   
     @IBOutlet weak var scoreLabel: UILabel!
     
-    lazy var player : UIView = {
-        let view = UIView(frame: startRect)
-        view.backgroundColor = .red
+    var audioPlayer = AVAudioPlayer()
+    var backgroundAudioPlayer = AVAudioPlayer()
+    
+    lazy var player : UIImageView = {
+        let view = UIImageView(frame: startRect)
+        view.image = UIImage(named: "duck_back")
         return view
     }()
     
@@ -28,6 +32,7 @@ class GameViewController : UIViewController,GameOverDelegate {
     var howFar : CGFloat = 800
     
     var map = Map.map1
+    var train = Train(image: "train", speed: Speed.VeryVeryFast).body
     
     let gameOverVC : GameOverViewController = {
         let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GameOverViewController") as! GameOverViewController
@@ -37,6 +42,7 @@ class GameViewController : UIViewController,GameOverDelegate {
     
     let trees = Tree.trees
     var treePoints : [CGPoint]?
+    let chicken = Chicken(axis: CGPoint(x: 200, y: 80)).body
     
     var logoImageView : UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: -200, y: 350, width: 200, height: 200))
@@ -61,14 +67,19 @@ class GameViewController : UIViewController,GameOverDelegate {
     }
     
     private func setting(){
+        NotificationCenter.default.addObserver(self, selector: #selector(stopSound), name: NSNotification.Name(rawValue: "stop"), object: nil)
         gameOverVC.delegate = self
+        playRoadSound()
         
         view.addSubview(player)
         view.addSubviews(map)
         view.addSubViews(trees)
+        view.addSubview(train)
+        view.addSubview(chicken)
         
         view.addSubview(skyBlueView)
         view.addSubview(logoImageView)
+      
         
     }
     
@@ -80,6 +91,7 @@ class GameViewController : UIViewController,GameOverDelegate {
         moveCar(map.roads[3], Direction.Right,delay: Second.sec(3))
         moveCar(map.roads[4], Direction.Left,delay: Second.sec(5))
         moveCar(map.roads[5], Direction.Right,delay: Second.sec(2))
+        moveCar(map.roads[6], Direction.Right, delay: Second.sec(5))
         checkAccident()
     }
     
@@ -108,6 +120,7 @@ class GameViewController : UIViewController,GameOverDelegate {
                         if (self.player.center == car.body.center){
                             print("교통사고!")
                             dead = true
+                            self.playSound("break")
                             self.gameOverVC.score = self.score
                             self.present(self.gameOverVC, animated: false)
                         }
@@ -128,17 +141,25 @@ class GameViewController : UIViewController,GameOverDelegate {
     private func movePlayer(to : SwipeDir){
         
         var rect : CGPoint
+        var playerImage : UIImage
+        
         switch(to){
-        case .SwipeUp: rect = CGPoint(x: self.player.frame.minX, y: self.player.frame.minY - 40)
+        case .SwipeUp:
+            rect = CGPoint(x: self.player.frame.minX, y: self.player.frame.minY - 40)
+            playerImage = UIImage(named: Image.duck_back)!
         case .SwipeDown: rect = CGPoint(x: self.player.frame.minX, y: self.player.frame.minY + 40)
+            playerImage = UIImage(named: Image.duck_back)!
         case .SwipeLeft: rect = CGPoint(x: self.player.frame.minX - 40, y: self.player.frame.minY)
+            playerImage = UIImage(named: Image.duck_left)!
         case .SwipeRight: rect =  CGPoint(x: self.player.frame.minX + 40, y: self.player.frame.minY)
+            playerImage = UIImage(named: Image.duck_right)!
             
         }
         
         
         let allowXPoint = 0 <= rect.x && rect.x <= 360
         let allowYPoint = 80 <= rect.y && rect.y <= 800
+        
         let checkTree : Bool = {
             var bool = true
             for t in trees{
@@ -154,6 +175,8 @@ class GameViewController : UIViewController,GameOverDelegate {
             rect = CGPoint(x: self.player.frame.minX, y: self.player.frame.minY)
         }
         
+        player.image = playerImage
+        
         UIView.animate(
             withDuration: 0.5,
             delay: 0,
@@ -161,6 +184,7 @@ class GameViewController : UIViewController,GameOverDelegate {
             initialSpringVelocity: 0.5,
             animations: {self.player.frame.origin = rect}
         )
+        print(self.player.frame.origin.y)
     }
     
     func resetGame() {
@@ -181,7 +205,7 @@ class GameViewController : UIViewController,GameOverDelegate {
                 self.logoImageView.center = self.view.center
                 self.skyBlueView.alpha = 1
             }) { finished in
-                usleep(1000000)
+                usleep(Second.sec(1))
                 UIView.animate(
                     withDuration: 0.5,
                     animations: {
@@ -192,21 +216,29 @@ class GameViewController : UIViewController,GameOverDelegate {
                 
             }
         
-//        self.logoImageView.snp.remakeConstraints {
-//            $0.trailing.equalTo(self.view.snp.leading)
-//          $0.size.equalTo(240)
-//        }
-//
-//        self.skyBlueView.snp.remakeConstraints {
-//            $0.width.equalTo(414)
-//            $0.height.equalTo(1000)
-//            $0.center.equalToSuperview().inset(414)
-//        }
-//        UIView.animate(
-//            withDuration: 0.5,
-//            animations: self.view.layoutIfNeeded
-//        )
         
+    }
+    
+    private func playSound(_ soundName : String){
+        let url = Bundle.main.url(forResource: soundName, withExtension: "mp3")
+        audioPlayer = try! AVAudioPlayer(contentsOf: url!)
+        audioPlayer.play()
+    }
+    
+    private func playRoadSound(){
+        let url = Bundle.main.url(forResource: "road", withExtension: "mp3")
+        backgroundAudioPlayer = try! AVAudioPlayer(contentsOf: url!)
+        backgroundAudioPlayer.play()
+        backgroundAudioPlayer.numberOfLoops = .max
+    }
+    
+    @objc func stopSound(_ notification : NSNotification){
+        let stop = notification.object as? Bool ?? false
+        if stop {
+            backgroundAudioPlayer.stop()
+        }else{
+            backgroundAudioPlayer.play()
+        }
         
     }
     
@@ -216,24 +248,28 @@ class GameViewController : UIViewController,GameOverDelegate {
         print("tap")
         movePlayer(to: .SwipeUp)
         calculateScore()
+        playSound("jump")
     }
     
     @IBAction func swipeUp(_ sender: Any) {
         movePlayer(to: .SwipeUp)
         calculateScore()
+        playSound("jump")
     }
     
     @IBAction func swipeDown(_ sender: Any) {
         movePlayer(to: .SwipeDown)
-       
+        playSound("jump")
     }
     
     @IBAction func swipeLeft(_ sender: Any) {
         movePlayer(to: .SwipeLeft)
+        playSound("jump")
     }
     
     @IBAction func swipeRight(_ sender: Any) {
         movePlayer(to: .SwipeRight)
+        playSound("jump")
     }
     
     

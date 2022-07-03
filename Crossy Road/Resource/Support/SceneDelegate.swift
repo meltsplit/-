@@ -11,14 +11,16 @@ import SnapKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let operationQueue = OperationQueue()
     lazy var pauseView : UIView = {
         let view = UIView(frame: window!.frame)
         view.backgroundColor = .cyan
         view.alpha = 0.5
         return view
     }()
+    
     lazy var imageView = makeImageView()
-   
+    var background = false
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
@@ -29,14 +31,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         print("Active") //다시 forground로 돌아왔을 때
-        
-        self.setUI()
-        self.countDown()
+        if(background){
+            self.setUI()
+            self.countDown()
+        }
+       
         
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        print("Resign") // 앱을 종료하려 할 때
+        print("Resign") // 앱을 종료하려 할 때\
+        background = true
         self.setUI()
         imageView.image = UIImage(named: "pause")
         
@@ -61,29 +66,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func countDown(){
-        DispatchQueue.global().async {
+        operationQueue.addOperation {
             for i in (1..<4).reversed(){ // 3 -> 2 -> 1
                     DispatchQueue.main.async {
                         self.imageView.image = UIImage(named: String(i)) // 시간 대에 맞게 화면에 숫자 이미지 띄움
                     }
                 usleep(Second.sec(1)) //for문이 1초당 한번씩 반복하게 설정. Second.sec(1)은 1초를 의미함.
                 
-                if (i == 1){ //만약 시간초가 모두 지나면.
-                    DispatchQueue.main.async {
-                        // 카운트 다운 사진과 푸른 배경 뷰를 제거함
-                        self.imageView.removeFromSuperview()
-                        self.pauseView.removeFromSuperview()
-                       
-                    }
-                    // 차들을 다시 움직이에 하는 신호
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "stop"), object: false)
-                }
             }
             
+            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                self.imageView.removeFromSuperview()
+                self.pauseView.removeFromSuperview()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "stop"), object: false)
+                print("asynafter")
+            })
         }
+        print("count end")
     }
-    
-    
     
     private func makeImageView() -> UIImageView{
         let imageView = UIImageView()

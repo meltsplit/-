@@ -13,6 +13,7 @@ enum Speed : UInt32{
     case Normal = 6000
     case Fast = 4000
     case VeryFast = 2000
+    case VeryVeryFast = 700
 }
 
 enum Direction {
